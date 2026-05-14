@@ -1,13 +1,11 @@
 <script setup>
 import { ref } from 'vue';
-import { Link } from '@inertiajs/vue3';
 import { FilterMatchMode } from '@primevue/core/api';
 
 import AdminNavbar from '@/Components/AdminNavbar.vue';
+import OverviewStats from '@/Components/OverviewStats.vue';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
-import Avatar from 'primevue/avatar';
-import Card from 'primevue/card';
 import IconField from 'primevue/iconfield';
 import InputIcon from 'primevue/inputicon';
 import InputText from 'primevue/inputtext';
@@ -16,9 +14,9 @@ import AdminLayout from '@/Layouts/AdminLayout.vue';
 
 // Stats
 const stats = [
-  { label: 'Total Reservations', value: '75', sub: 'All reservations' },
-  { label: 'Pendings',           value: '24', sub: 'Waiting for review' },
-  { label: 'Approved',           value: '50', sub: 'This month of May' },
+  { label: 'Total Reservations', value: '20', sub: 'All reservations' },
+  { label: 'Pendings',           value: '12', sub: 'Waiting for review' },
+  { label: 'Approved',           value: '6', sub: 'This month of May' },
   { label: 'Rejected',           value: '1',  sub: 'This month of May' },
 ];
 
@@ -52,27 +50,13 @@ const filters = ref({
 });
 </script>
 
-
 <template>
   <AdminLayout>
     <template #header-actions>
       <AdminNavbar />
     </template>
-    
-    <div>
-      <h1 class="font-palatino text-[32px] text-[#850038]">Overview</h1>
-    </div>
 
-    <!-- Stats Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-      <Card v-for="stat in stats" :key="stat.label">
-        <template #content>
-          <p class="text-sm text-black-900">{{ stat.label }}</p>
-          <p class="text-3xl font-bold mt-1">{{ stat.value }}</p>
-          <p class="text-[12px] text-black-900">{{ stat.sub }}</p>
-        </template>
-      </Card>
-    </div>
+    <OverviewStats :stats="stats" />
 
     <!-- DataTable -->
     <div class="rounded-xl overflow-hidden border border-gray-200">
@@ -86,7 +70,7 @@ const filters = ref({
         v-model:filters="filters"
         :pt="{
           column: {
-            headerCell: { style: 'color: #850038; background-color: #f9f0f3;' }
+            headerCell: { style: 'color: #ffffff; background-color: #850038;' }
           }
         }"
       >
@@ -118,4 +102,3 @@ const filters = ref({
 
   </AdminLayout>
 </template>
-
