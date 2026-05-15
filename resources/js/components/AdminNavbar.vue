@@ -49,7 +49,7 @@ const collapsed = inject('collapsed', false);
           shape="circle"
         />
         <div class="leading-tight">
-          <span class="text-sm text-gray-900">{{ $page.props.auth.user.name }}</span>
+          <span class="text-sm text-black">{{ $page.props.auth.user.name }}</span>
           <p class="text-xs text-gray-500">Administrator</p>
         </div>
       </div>

@@ -92,6 +92,18 @@ provide('collapsed', collapsed)
           </Link>
 
           <Link
+            href="/approved"
+            :class="[
+              'flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 text-sm transition-all',
+              collapsed ? 'justify-center' : '',
+              $page.url.startsWith('/pending') ? 'bg-[#f9f0f3] text-[#850038] font-medium' : '',
+            ]"
+          >
+            <i class="pi pi-list-check"></i>
+            <span v-if="!collapsed">Approved</span>
+          </Link>
+
+          <Link
             href="/pending"
             :class="[
               'flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 text-sm transition-all',
@@ -114,6 +126,31 @@ provide('collapsed', collapsed)
             <i class="pi pi-times-circle"></i>
             <span v-if="!collapsed">Rejected</span>
           </Link>
+
+          <Link
+            href="/calendar"
+            :class="[
+              'flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 text-sm transition-all',
+              collapsed ? 'justify-center' : '',
+              $page.url.startsWith('/rejected') ? 'bg-[#f9f0f3] text-[#850038] font-medium' : '',
+            ]"
+          >
+            <i class="pi pi-calendar"></i>
+            <span v-if="!collapsed">Calendar</span>
+          </Link>
+
+          <Link
+            href="/equipment"
+            :class="[
+              'flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 text-sm transition-all',
+              collapsed ? 'justify-center' : '',
+              $page.url.startsWith('/rejected') ? 'bg-[#f9f0f3] text-[#850038] font-medium' : '',
+            ]"
+          >
+            <i class="pi pi-box"></i>
+            <span v-if="!collapsed">Equipments</span>
+          </Link>
+
         </nav>
 
         <!-- Logout Button -->

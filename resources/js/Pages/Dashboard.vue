@@ -14,6 +14,7 @@ import AdminLayout from '@/Layouts/AdminLayout.vue';
 
 // Table data
 const reservations = ref([
+  /*
   { referenceNumber: '20260504-8743', fullName: 'John Doe',          mobileNumber: '09123456789', facility: 'PAH',        equipment: 'Camera',      purpose: 'Event',       transactionDate: '2026-05-04' },
   { referenceNumber: '20260504-1234', fullName: 'Mark Ian',          mobileNumber: '09058551732', facility: 'AVR',        equipment: 'Projector',   purpose: 'Meeting',     transactionDate: '2026-05-06' },
   { referenceNumber: '20260505-2391', fullName: 'Maria Santos',      mobileNumber: '09171234567', facility: 'Library',    equipment: 'Laptop',      purpose: 'Study',       transactionDate: '2026-05-05' },
@@ -34,7 +35,8 @@ const reservations = ref([
   { referenceNumber: '20260512-6637', fullName: 'Kevin Hernandez',   mobileNumber: '09421234567', facility: 'Gymnasium',  equipment: 'Laptop',      purpose: 'Event',       transactionDate: '2026-05-12' },
   { referenceNumber: '20260513-3309', fullName: 'Rachel Domingo',    mobileNumber: '09531234567', facility: 'PAH',        equipment: 'Microphone',  purpose: 'Graduation',  transactionDate: '2026-05-13' },
   { referenceNumber: '20260513-9982', fullName: 'Aaron Villanueva',  mobileNumber: '09641234567', facility: 'AVR',        equipment: 'Camera',      purpose: 'Meeting',     transactionDate: '2026-05-13' },
-]);
+  */
+  ]);
 
 // Stats — total is dynamic, rest are static for now
 const stats = computed(() => {
@@ -65,24 +67,25 @@ const filters = ref({
     <!-- DataTable -->
     <div class="rounded-xl overflow-hidden border border-gray-200">
       <DataTable
-        :value="reservations"
-        paginator
-        :rows="10"
-        :rowsPerPageOptions="[10, 25, 50]"
-        tableStyle="min-width: 60rem"
-        :globalFilterFields="['referenceNumber', 'fullName', 'mobileNumber', 'facility', 'equipment', 'purpose', 'transactionDate']"
-        v-model:filters="filters"
-        :pt="{
-          column: {
-            headerCell: { style: 'color: #ffffff; background-color: #850038;' }
-          }
-        }"
-      >
+          :value="reservations"
+          paginator
+          :rows="10"
+          :rowsPerPageOptions="[10, 20, 30]"
+          showGridlines
+          tableStyle="min-width: 60rem"
+          :globalFilterFields="['referenceNumber', 'fullName', 'mobileNumber', 'facility', 'equipment', 'purpose', 'transactionDate', 'start_date', 'end_date']"
+          v-model:filters="filters"
+          :pt="{
+            column: {
+              headerCell: { style: 'color: #ffffff; background-color: #850038; text-align: center;' }
+            }
+          }"
+        >
         <template #header>
           <div class="flex justify-between items-center">
             <div class="leading-tight">
-              <span class="text-[18px] font-semibold text-[#850038]">All Reservation History</span>
-              <p class="text-xs text-black-500">Complete history of all reservation submitted to the system</p>
+              <span class="text-[20px] font-semibold text-[#850038]">All Reservation History</span>
+              <p class="text-[14px] text-black">Complete history of all reservation submitted to the system</p>
             </div>
 
             <IconField>
@@ -94,16 +97,23 @@ const filters = ref({
 
         <template #empty>No reservations found.</template>
 
-        <Column field="referenceNumber" header="Reference Number" style="min-width: 10rem" />
+        <Column field="referenceNumber" header="Reference Number"  style="min-width: 10rem" />
         <Column field="transactionDate" header="Transaction Date"  style="min-width: 10rem" />
         <Column field="fullName"        header="Full Name"         style="min-width: 10rem" />
         <Column field="mobileNumber"    header="Mobile Number"     style="min-width: 10rem" />
         <Column field="facility"        header="Facility"          style="min-width: 8rem"  />
         <Column field="equipment"       header="Equipment"         style="min-width: 8rem"  />
         <Column field="purpose"         header="Purpose"           style="min-width: 8rem"  />
+        <Column field="start_date"      header="Start Date"        style="min-width: 8rem"  />
+        <Column field="end_date"        header="End Date"          style="min-width: 8rem"  />
 
       </DataTable>
     </div>
 
   </AdminLayout>
 </template>
+<style scoped>
+:deep(.p-datatable-tbody td) {
+  color: #000000;
+}
+</style>

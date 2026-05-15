@@ -18,9 +18,9 @@ defineProps({
   <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
     <Card v-for="stat in stats" :key="stat.label">
       <template #content>
-        <p class="text-sm text-black-900">{{ stat.label }}</p>
-        <p class="text-3xl text-[#850038] font-bold mt-1">{{ stat.value }}</p>
-        <p class="text-[12px] text-black-900">{{ stat.sub }}</p>
+        <p class="text-[20px] font-regular text-black">{{ stat.label }}</p>
+        <p class="text-5xl text-[#850038] font-bold mt-1">{{ stat.value }}</p>
+        <p class="text-[14px] text-black">{{ stat.sub }}</p>
       </template>
     </Card>
   </div>
