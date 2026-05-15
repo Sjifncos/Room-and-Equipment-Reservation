@@ -1,3 +1,33 @@
+<script setup>
+import { ref, onMounted, watch, provide } from 'vue'
+import { Link, router, usePage } from '@inertiajs/vue3'
+import Button from 'primevue/button'
+
+const $page = usePage()
+
+const collapsed = ref(false)
+
+onMounted(() => {
+  const savedState = localStorage.getItem('adminSidebarCollapsed')
+  if (savedState !== null) {
+    collapsed.value = savedState === 'true'
+  }
+})
+
+watch(collapsed, (newValue) => {
+  localStorage.setItem('adminSidebarCollapsed', newValue)
+})
+
+const toggleCollapse = () => {
+  collapsed.value = !collapsed.value
+}
+
+const logout = () => router.post('/logout')
+
+// Provide collapsed state so child pages can inject it if needed
+provide('collapsed', collapsed)
+</script>
+
 <template>
   <div class="flex flex-col h-screen bg-gray-100">
     <!-- Top Navigation Bar -->
@@ -111,40 +141,10 @@
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted, watch, provide } from 'vue'
-import { Link, router, usePage } from '@inertiajs/vue3'
-import Button from 'primevue/button'
-
-const $page = usePage()
-
-const collapsed = ref(false)
-
-onMounted(() => {
-  const savedState = localStorage.getItem('adminSidebarCollapsed')
-  if (savedState !== null) {
-    collapsed.value = savedState === 'true'
-  }
-})
-
-watch(collapsed, (newValue) => {
-  localStorage.setItem('adminSidebarCollapsed', newValue)
-})
-
-const toggleCollapse = () => {
-  collapsed.value = !collapsed.value
-}
-
-const logout = () => router.post('/logout')
-
-// Provide collapsed state so child pages can inject it if needed
-provide('collapsed', collapsed)
-</script>
-
 <style scoped>
 aside {
   transition-property: width;
-  transition-duration: 300ms;
+  transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 </style>

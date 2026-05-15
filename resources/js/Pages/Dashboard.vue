@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { FilterMatchMode } from '@primevue/core/api';
 
 import AdminNavbar from '@/Components/AdminNavbar.vue';
@@ -11,14 +11,6 @@ import InputIcon from 'primevue/inputicon';
 import InputText from 'primevue/inputtext';
 
 import AdminLayout from '@/Layouts/AdminLayout.vue';
-
-// Stats
-const stats = [
-  { label: 'Total Reservations', value: '20', sub: 'All reservations' },
-  { label: 'Pendings',           value: '12', sub: 'Waiting for review' },
-  { label: 'Approved',           value: '6', sub: 'This month of May' },
-  { label: 'Rejected',           value: '1',  sub: 'This month of May' },
-];
 
 // Table data
 const reservations = ref([
@@ -43,6 +35,18 @@ const reservations = ref([
   { referenceNumber: '20260513-3309', fullName: 'Rachel Domingo',    mobileNumber: '09531234567', facility: 'PAH',        equipment: 'Microphone',  purpose: 'Graduation',  transactionDate: '2026-05-13' },
   { referenceNumber: '20260513-9982', fullName: 'Aaron Villanueva',  mobileNumber: '09641234567', facility: 'AVR',        equipment: 'Camera',      purpose: 'Meeting',     transactionDate: '2026-05-13' },
 ]);
+
+// Stats — total is dynamic, rest are static for now
+const stats = computed(() => {
+  const monthName = new Date().toLocaleString('default', { month: 'long' });
+
+  return [
+    { label: 'Total Reservations', value: reservations.value.length.toString(), sub: 'All reservations' },
+    { label: 'Pendings',           value: '12', sub: 'Waiting for review' },
+    { label: 'Approved',           value: '6',  sub: `This month of ${monthName}` },
+    { label: 'Rejected',           value: '1',  sub: `This month of ${monthName}` },
+  ];
+});
 
 // Filters — global only
 const filters = ref({
@@ -91,12 +95,13 @@ const filters = ref({
         <template #empty>No reservations found.</template>
 
         <Column field="referenceNumber" header="Reference Number" style="min-width: 10rem" />
+        <Column field="transactionDate" header="Transaction Date"  style="min-width: 10rem" />
         <Column field="fullName"        header="Full Name"         style="min-width: 10rem" />
         <Column field="mobileNumber"    header="Mobile Number"     style="min-width: 10rem" />
         <Column field="facility"        header="Facility"          style="min-width: 8rem"  />
         <Column field="equipment"       header="Equipment"         style="min-width: 8rem"  />
         <Column field="purpose"         header="Purpose"           style="min-width: 8rem"  />
-        <Column field="transactionDate" header="Transaction Date"  style="min-width: 10rem" />
+
       </DataTable>
     </div>
 
