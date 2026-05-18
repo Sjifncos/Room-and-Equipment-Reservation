@@ -14,7 +14,7 @@ import AdminLayout from '@/Layouts/AdminLayout.vue';
 
 // Table data
 const reservations = ref([
-  /*
+/*
   { referenceNumber: '20260504-8743', fullName: 'John Doe',          mobileNumber: '09123456789', facility: 'PAH',        equipment: 'Camera',      purpose: 'Event',       transactionDate: '2026-05-04' },
   { referenceNumber: '20260504-1234', fullName: 'Mark Ian',          mobileNumber: '09058551732', facility: 'AVR',        equipment: 'Projector',   purpose: 'Meeting',     transactionDate: '2026-05-06' },
   { referenceNumber: '20260505-2391', fullName: 'Maria Santos',      mobileNumber: '09171234567', facility: 'Library',    equipment: 'Laptop',      purpose: 'Study',       transactionDate: '2026-05-05' },
@@ -35,8 +35,9 @@ const reservations = ref([
   { referenceNumber: '20260512-6637', fullName: 'Kevin Hernandez',   mobileNumber: '09421234567', facility: 'Gymnasium',  equipment: 'Laptop',      purpose: 'Event',       transactionDate: '2026-05-12' },
   { referenceNumber: '20260513-3309', fullName: 'Rachel Domingo',    mobileNumber: '09531234567', facility: 'PAH',        equipment: 'Microphone',  purpose: 'Graduation',  transactionDate: '2026-05-13' },
   { referenceNumber: '20260513-9982', fullName: 'Aaron Villanueva',  mobileNumber: '09641234567', facility: 'AVR',        equipment: 'Camera',      purpose: 'Meeting',     transactionDate: '2026-05-13' },
-  */
+*/
   ]);
+
 
 // Stats — total is dynamic, rest are static for now
 const stats = computed(() => {
@@ -44,9 +45,9 @@ const stats = computed(() => {
 
   return [
     { label: 'Total Reservations', value: reservations.value.length.toString(), sub: 'All reservations' },
-    { label: 'Pendings',           value: '12', sub: 'Waiting for review' },
-    { label: 'Approved',           value: '6',  sub: `This month of ${monthName}` },
-    { label: 'Rejected',           value: '1',  sub: `This month of ${monthName}` },
+    { label: 'Pendings',           value: '0', sub: 'Waiting for review' },
+    { label: 'Approved',           value: '0',  sub: `This month of ${monthName}` },
+    { label: 'Rejected',           value: '0',  sub: `This month of ${monthName}` },
   ];
 });
 
